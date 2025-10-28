@@ -1,0 +1,167 @@
+/* === ESTILO GENERAL TIPO CANVA (BLANCO + VERDE CLARO) === */
+
+/* Fondo base */
+body {
+  @apply bg-gradient-to-b from-emerald-50 via-white to-emerald-50 text-slate-800 font-[Poppins] leading-relaxed;
+}
+
+/* Contenedor principal */
+#root {
+  @apply max-w-7xl mx-auto p-6;
+}
+
+/* Tarjetas generales */
+.card {
+  @apply bg-white rounded-2xl shadow-md border border-emerald-100 p-6 transition-all duration-300 hover:shadow-lg;
+}
+
+/* Títulos */
+h1,
+h2,
+h3 {
+  @apply text-slate-800 font-bold tracking-tight;
+}
+h1 {
+  @apply text-3xl md:text-4xl bg-gradient-to-r from-emerald-600 to-emerald-400 bg-clip-text text-transparent mb-4;
+}
+
+/* Botones */
+button {
+  @apply px-4 py-2 rounded-xl border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-medium shadow-sm transition-all duration-200;
+}
+button:active {
+  @apply scale-[0.98];
+}
+
+/* Inputs y selects */
+input,
+select {
+  @apply border border-emerald-200 rounded-lg px-2 py-1 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition-all duration-200;
+}
+
+/* Tablas */
+table {
+  @apply w-full border-collapse text-sm;
+}
+th {
+  @apply bg-emerald-50 text-emerald-800 font-semibold text-left px-3 py-2 border-b border-emerald-100;
+}
+td {
+  @apply px-3 py-2 border-b border-emerald-50;
+}
+tr:nth-child(even) {
+  @apply bg-emerald-50/30;
+}
+tr:hover {
+  @apply bg-emerald-100/50;
+}
+
+/* Tarjetas tipo mixer */
+.mixer-card {
+  @apply bg-white rounded-2xl border border-emerald-100 shadow-md p-5 mb-6 transition-all duration-300 hover:shadow-lg;
+}
+
+/* Mensajes y alertas */
+.alert {
+  @apply p-4 rounded-2xl border text-sm shadow-sm;
+}
+.alert-error {
+  @apply bg-red-50 border-red-200 text-red-700;
+}
+.alert-info {
+  @apply bg-emerald-50 border-emerald-200 text-emerald-700;
+}
+
+/* Selector de archivo */
+input[type='file']::file-selector-button {
+  @apply bg-emerald-100 border border-emerald-300 text-emerald-700 rounded-xl px-3 py-1 cursor-pointer transition-all duration-200;
+}
+input[type='file']::file-selector-button:hover {
+  @apply bg-emerald-200;
+}
+
+/* Recuadros internos */
+.section-box {
+  @apply bg-white/70 border border-emerald-100 rounded-2xl shadow-sm p-4;
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+/* === FIX FINAL RESPONSIVE Y ALINEACIÓN DE TABLAS === */
+
+.panel {
+  width: 100%;
+  padding: 12px;
+  overflow-x: hidden;
+}
+
+/* Las tablas siempre ocupan el 100 % del panel */
+.panel table {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-collapse: collapse;
+  table-layout: fixed;
+  margin: 0;
+}
+
+/* Celdas seguras, sin desborde */
+.panel th,
+.panel td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 8px 10px;
+  font-size: 0.95em;
+}
+
+/* Scroll horizontal solo en pantallas angostas */
+@media (max-width: 640px) {
+  .panel table {
+    display: block;
+    overflow-x: auto;
+    table-layout: auto;
+  }
+  .panel th,
+  .panel td {
+    padding: 6px 8px;
+  }
+}
+
+/* Distribución vertical de secciones */
+.panel-mixer,
+.panel-corrales {
+  width: 100%;
+}
+
+/* En horizontal se ponen lado a lado */
+@media (min-width: 700px) {
+  .panel-mixer,
+  .panel-corrales {
+    display: inline-block;
+    width: 49%;
+    vertical-align: top;
+  }
+}
+/* ===== Scroll por “páginas” en celu (sin suave) ===== */
+@media (max-width: 700px) {
+  html, body { height: 100%; scroll-behavior: auto; } /* sin scroll suave */
+  body { 
+    scroll-snap-type: y mandatory;   /* engancha secciones verticalmente */
+    overscroll-behavior-y: contain;  /* evita rebotes feos */
+  }
+
+  /* Cada bloque grande engancha al inicio al scrollear */
+  .panel,
+  .mixer-card {                      /* si usás mixer-card individuales */
+    scroll-snap-align: start;
+  }
+
+  /* Para que cada sección ocupe la pantalla y “pagine” */
+  .panel-mixer,
+  .panel-corrales {
+    min-height: 92dvh;               /* casi pantalla completa */
+    display: block;
+  }
+}
