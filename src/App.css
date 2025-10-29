@@ -165,3 +165,362 @@ html {
     display: block;
   }
 }
+
+/* === TEMA BLANCO + VERDE CLARO (CSS PURO, SIN TAILWIND) === */
+
+/* Fondo base y tipografía */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root{
+  --emerald-50:#ecfdf5; --emerald-100:#d1fae5; --emerald-200:#a7f3d0; 
+  --emerald-300:#6ee7b7; --emerald-400:#34d399; --emerald-600:#059669;
+  --slate-800:#1f2937; --line:#e7f5ee; --shadow:0 6px 18px rgba(0,0,0,.06);
+  --radius:16px;
+}
+
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background: linear-gradient(to bottom, var(--emerald-50), #ffffff, var(--emerald-50));
+  color: var(--slate-800);
+  font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height: 1.6;
+}
+
+/* Contenedor principal */
+#root{
+  max-width: 80rem; /* ~1280px */
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Tarjetas generales */
+.card{
+  background:#fff;
+  border:1px solid var(--emerald-100);
+  border-radius: var(--radius);
+  padding:24px;
+  box-shadow: var(--shadow);
+  transition: box-shadow .2s ease, transform .05s ease;
+}
+.card:hover{ box-shadow: 0 10px 22px rgba(0,0,0,.08); }
+
+/* Títulos */
+h1,h2,h3{
+  color:var(--slate-800);
+  font-weight:700;
+  letter-spacing:.2px;
+  margin: 0 0 12px 0;
+}
+h1{
+  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+  background: linear-gradient(90deg, var(--emerald-600), var(--emerald-400));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  margin-bottom: 16px;
+}
+h2{ font-size:1.25rem; }
+h3{ font-size:1.05rem; font-weight:600; opacity:.85; }
+
+/* Botones */
+button{
+  padding: 10px 14px;
+  border-radius: 12px;
+  border:1px solid var(--emerald-300);
+  background: #f0fff7;
+  color:#047857;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  transition: background .2s, transform .05s, box-shadow .2s;
+}
+button:hover{ background:#e7fff2; box-shadow: 0 3px 8px rgba(0,0,0,.06); }
+button:active{ transform: scale(.98); }
+
+/* Inputs y selects */
+input, select{
+  border:1px solid var(--emerald-200);
+  border-radius:10px;
+  padding:8px 10px;
+  min-width:120px;
+  outline:none;
+  transition: box-shadow .15s, border-color .15s;
+  background:#fff; color:var(--slate-800);
+}
+input:focus, select:focus{
+  border-color: var(--emerald-400);
+  box-shadow: 0 0 0 3px rgba(52,211,153,.25);
+}
+
+/* Tablas */
+table{
+  width:100%;
+  border-collapse: collapse;
+  font-size: .95rem;
+  background:#fff;
+  border:1px solid var(--emerald-100);
+  border-radius: var(--radius);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+}
+thead th{
+  background: var(--emerald-50);
+  color:#065f46;
+  font-weight:700;
+  text-align:left;
+  padding:10px 12px;
+  border-bottom:1px solid var(--emerald-100);
+}
+td{
+  padding:10px 12px;
+  border-bottom:1px solid #f0faf6;
+}
+tr:nth-child(even){ background: rgba(16,185,129,.06); }
+tr:hover{ background: rgba(16,185,129,.12); }
+td.num, th.num{ text-align:right; }
+
+/* Tarjetas tipo mixer */
+.mixer-card{
+  background:#fff;
+  border:1px solid var(--emerald-100);
+  border-radius: var(--radius);
+  padding:20px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+  transition: box-shadow .2s ease;
+}
+.mixer-card:hover{ box-shadow: 0 10px 22px rgba(0,0,0,.08); }
+
+/* Mensajes y alertas */
+.alert{
+  padding:14px; border-radius:16px; border:1px solid; font-size:.9rem; box-shadow: 0 1px 2px rgba(0,0,0,.03);
+}
+.alert-error{ background:#fef2f2; border-color:#fecaca; color:#b91c1c; }
+.alert-info{ background:#ecfdf5; border-color:#a7f3d0; color:#065f46; }
+
+/* Selector de archivo */
+input[type='file']::file-selector-button{
+  background:#e6fff2; border:1px solid var(--emerald-300); color:#065f46;
+  border-radius:12px; padding:6px 10px; cursor:pointer; transition: background .2s;
+}
+input[type='file']::file-selector-button:hover{ background:#d9ffec; }
+
+/* Recuadros internos */
+.section-box{
+  background: rgba(255,255,255,.75);
+  border:1px solid var(--emerald-100);
+  border-radius:16px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.03);
+  padding:14px;
+}
+
+/* Panel y tablas responsivas */
+.panel{ width:100%; padding:12px; overflow-x:hidden; }
+.panel table{
+  width:100% !important; max-width:100% !important;
+  table-layout: fixed; margin:0;
+}
+.panel th, .panel td{
+  white-space: nowrap; overflow:hidden; text-overflow: ellipsis;
+  padding:8px 10px; font-size:.95em;
+}
+
+/* Scroll horizontal solo en pantallas angostas */
+@media (max-width: 640px){
+  .panel table{ display:block; overflow-x:auto; table-layout:auto; }
+  .panel th, .panel td{ padding:6px 8px; }
+}
+
+/* Distribución vertical / horizontal de secciones */
+.panel-mixer, .panel-corrales{ width:100%; }
+@media (min-width: 700px){
+  .panel-mixer, .panel-corrales{
+    display:inline-block; width:49%; vertical-align: top;
+  }
+}
+
+/* Paginado por secciones en móvil (sin scroll suave) */
+@media (max-width: 700px){
+  html, body{ height:100%; scroll-behavior:auto; }
+  body{ scroll-snap-type: y mandatory; overscroll-behavior-y: contain; }
+  .panel, .mixer-card{ scroll-snap-align: start; }
+  .panel-mixer, .panel-corrales{ min-height:92dvh; display:block; }
+}
+/* ===== Marcos por ETAPA para Mixer ===== */
+
+/* Contenedor general de cada mixer según etapa */
+.stage-wrap{
+  --stage-border:#e5e7eb;
+  --stage-bg: rgba(0,0,0,.04);
+  border: 2px solid var(--stage-border);
+  background: var(--stage-bg);
+  border-radius: 20px;
+  padding: 10px;            /* espacio con color */
+  margin: 16px 0;           /* separación entre mixers */
+}
+
+/* El contenido interno mantiene el formato blanco-verde actual */
+.stage-inner{
+  background:#fff;
+  border:1px solid var(--emerald-100);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+/* === Colores por etapa (borde, relleno y separador mismo tono, bien marcado) === */
+.stage--terminacion{
+  --stage-rgb: 185, 28, 28;                 /* rojo fuerte */
+  --stage-border: rgb(var(--stage-rgb));
+  --stage-bg:     rgba(var(--stage-rgb), .45);  /* relleno visible */
+  --stage-sep:    rgba(var(--stage-rgb), .85);  /* separador mismo tono */
+}
+.stage--recria{
+  --stage-rgb: 29, 78, 216;                 /* azul fuerte */
+  --stage-border: rgb(var(--stage-rgb));
+  --stage-bg:     rgba(var(--stage-rgb), .40);
+  --stage-sep:    rgba(var(--stage-rgb), .85);
+}
+.stage--inicio{
+  --stage-rgb: 217, 119, 6;                 /* amarillo fuerte */
+  --stage-border: rgb(var(--stage-rgb));
+  --stage-bg:     rgba(var(--stage-rgb), .42);
+  --stage-sep:    rgba(var(--stage-rgb), .85);
+}
+
+/* Separador entre columnas (desktop): usa el color de la etapa */
+.stage-inner .grid > div:nth-child(2){
+  border-left: 4px solid var(--stage-sep);
+  padding-left: 14px;         /* respira del separador */
+  border-radius: 0 12px 12px 0;
+}
+
+/* En móvil (una columna), el separador pasa a ser horizontal arriba del 2º bloque */
+@media (max-width: 767px){
+  .stage-inner .grid > div:nth-child(2){
+    border-left: none;
+    border-top: 4px solid var(--stage-sep);
+    padding-left: 0;
+    padding-top: 12px;
+    margin-top: 8px;
+    border-radius: 0;
+  }
+}
+/* ==== Mejor legibilidad en tablas del Mixer ==== */
+
+/* Líneas horizontales sutiles pero visibles */
+.stage-inner table tr {
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Alternancia de color más clara */
+.stage-inner table tr:nth-child(even) {
+  background-color: rgba(255,255,255,0.7);
+}
+.stage-inner table tr:nth-child(odd) {
+  background-color: rgba(0,0,0,0.02);
+}
+
+/* Hover más marcado, pero sin saturar */
+.stage-inner table tr:hover {
+  background-color: rgba(255,255,255,0.9);
+  transition: background-color 0.15s ease-in-out;
+}
+/* ==== Renglones bien definidos y con color de etapa ==== */
+.stage-inner table tr {
+  border-bottom: 2px solid var(--stage-sep);  /* usa el color de la etapa */
+}
+
+/* Alternancia de color: más notoria */
+.stage-inner table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+.stage-inner table tr:nth-child(odd) {
+  background-color: rgba(var(--stage-rgb), 0.08); /* leve tinte del color del mixer */
+}
+
+/* Hover: realce leve con el tono de la etapa */
+.stage-inner table tr:hover {
+  background-color: rgba(var(--stage-rgb), 0.14);
+  transition: background-color 0.2s ease-in-out;
+}
+/* ==== Mejora visual FORMULA / CORRALES & color por Etapa ==== */
+
+/* Marco suave para las tablas en esas dos pestañas */
+.table-wrap{
+  background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 60%, #ecfdf5 100%);
+  border: 1px solid var(--emerald-100);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+  overflow: auto;
+}
+
+/* Cabecera más marcada */
+.table-wrap table thead th{
+  background: #e6fff2;
+  color: #065f46;
+  border-bottom: 1px solid var(--emerald-200);
+  font-weight: 700;
+}
+
+/* Renglones bien separados (zebra + líneas suaves) */
+.table-wrap table tbody tr:nth-child(even){ background: rgba(16,185,129,.06); }
+.table-wrap table tbody tr{ border-bottom: 1px dashed #d1fae5; }
+.table-wrap table td{ padding: 10px 12px; }
+
+/* —— Coloreo de la celda ETAPA —— */
+.etapa-cell{
+  border-radius: 10px;
+  font-weight: 600;
+  border: 1px solid var(--stage-border, #e5e7eb);
+  background: var(--stage-bg-strong, #f3f4f6);
+  color: var(--stage-fg, #111827);
+}
+
+/* Agrego variables "fuertes" por etapa (no reemplaza tus clases existentes) */
+.stage--terminacion{
+  --stage-border:#b91c1c;            /* rojo intenso */
+  --stage-bg-strong:#fee2e2;         /* relleno fuerte */
+  --stage-fg:#7f1d1d;
+}
+.stage--recria{
+  --stage-border:#1d4ed8;            /* azul intenso */
+  --stage-bg-strong:#dbeafe;
+  --stage-fg:#112d75;
+}
+.stage--inicio{
+  --stage-border:#d97706;            /* ámbar intenso */
+  --stage-bg-strong:#fef3c7;
+  --stage-fg:#7c2d12;
+}
+/* ====== Píldora de ETAPA ====== */
+.etapa-pill{
+  display:inline-block;
+  width:100%;
+  border:1px solid #E5E7EB;   /* gris claro */
+  border-radius:9999px;        /* redondeado */
+  padding:2px 8px;
+  background:#fff;
+}
+.etapa-select{
+  width:100%;
+  background:transparent;
+  border:none;
+  outline:none;
+  font-weight:600;
+  padding:2px 0;
+}
+
+/* Colores por etapa (solo si hay valor, porque el JSX agrega la clase) */
+.etapa-pill.stage--recria{
+  background:rgba(59,130,246,.10);     /* azul suave */
+  border-color:rgba(59,130,246,.35);
+}
+.etapa-pill.stage--terminacion{
+  background:rgba(239,68,68,.12);      /* rojo suave */
+  border-color:rgba(239,68,68,.35);
+}
+.etapa-pill.stage--inicio{
+  background:rgba(245,158,11,.14);     /* ámbar suave */
+  border-color:rgba(245,158,11,.38);
+}
